@@ -8,7 +8,6 @@ copyright:           2020 Astrid Yu
 
 extra-source-files:
 - README.md
-- ChangeLog.md
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
@@ -17,13 +16,14 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/Plenglin/what2wear#readme>
+description:         Please see the README on GitHub at <https://github.com/githubuser/what2wear-server#readme>
 
 dependencies:
 - base >= 4.7 && < 5
-- http-client
-- yesod
-- dotenv
+- aeson
+- servant-server
+- wai
+- warp
 
 library:
   source-dirs: src
@@ -37,6 +37,7 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - base
     - what2wear-server
 
 tests:
@@ -48,4 +49,9 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - base
     - what2wear-server
+    - hspec
+    - hspec-wai
+    - hspec-wai-json
+    - aeson
