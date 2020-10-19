@@ -2,6 +2,7 @@
   "name": "what2wear-frontend",
   "version": "0.1.0",
   "private": true,
+  "license": "AGPL-3.0-only",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
