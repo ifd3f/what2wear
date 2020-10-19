@@ -4,7 +4,7 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 77836c3b2719b4fa91197ffbafc0cea25fe8bb7f2ffe2a27f8e7b2db57b01a92
+-- hash: a8dec417dba553f17e72f8151b605815782419280e3b8f8b2bb65639e3d5a0b7
 
 name:           what2wear-server
 version:        0.1.0
@@ -15,7 +15,6 @@ author:         Astrid Yu
 maintainer:     astrid@astrid.tech
 copyright:      2020 Astrid Yu
 license:        AGPL-3.0-only
-license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
