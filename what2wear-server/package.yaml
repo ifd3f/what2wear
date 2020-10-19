@@ -1,0 +1,57 @@
+name:                what2wear-server
+version:             0.1.0
+github:              "Plenglin/what2wear"
+license:             AGPL-3.0-only
+author:              Astrid Yu
+maintainer:          astrid@astrid.tech
+copyright:           2020 Astrid Yu
+
+extra-source-files:
+- README.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/what2wear-server#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- aeson
+- servant-server
+- wai
+- warp
+
+library:
+  source-dirs: src
+
+executables:
+  what2wear-server-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - what2wear-server
+
+tests:
+  what2wear-server-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - what2wear-server
+    - hspec
+    - hspec-wai
+    - hspec-wai-json
+    - aeson

@@ -1,0 +1,74 @@
+name: Full-Stack Build/Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - run: npm test
+        working-directory: what2wear-frontend
+
+      - run: npm run build
+        working-directory: what2wear-frontend
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./what2wear-frontend/build
+
+  build-server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-haskell@v1
+        with:
+          ghc-version: "8.8.2"
+          cabal-version: "3.0"
+
+      - name: Cache
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-cabal
+        with:
+          path: ~/.cabal
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/*.cabal') }}-${{ hashFiles('**/cabal.project') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Test
+        run: |
+          stack test
+        working-directory: ./what2wear-server
+
+      - name: Compile
+        working-directory: ./what2wear-server
+        run: |
+          stack build
+      
+      - name: Create build tarball
+        run: |
+          cp ./what2wear-server/.stack-work/dist/x86_64-linux/Cabal-3.0.1.0/build/what2wear-server-exe/what2wear-server-exe .
+          tar cvf what2wear-server.tar.gz what2wear-server-exe
+      
+      - name: Upload build tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: what2wear-server
+          path: what2wear-server.tar.gz
