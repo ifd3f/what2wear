@@ -4,6 +4,7 @@ import { WeatherDataProvider } from "./weather/components"
 import { DummyWeatherDataSource } from "./weather/dummy"
 import { WearGrid } from "./wear/wear-grid"
 import { Layout } from "./layout"
+import { ZoneAdjustmentSlider } from "./wear/preference-editor"
 
 function App() {
   const api = new DummyWeatherDataSource({
@@ -24,6 +25,7 @@ function App() {
     <WeatherDataProvider api={api} position={position}>
       <Layout title="What to wear?">
         <WearGrid />
+        <ZoneAdjustmentSlider />
       </Layout>
     </WeatherDataProvider>
   )
