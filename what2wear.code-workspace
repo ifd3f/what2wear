@@ -1,8 +1,17 @@
 {
 	"folders": [
 		{
-			"path": "."
-		}
+			"path": "./what2wear-server",
+			"name": "API"
+		},
+		{
+			"path": "./what2wear-frontend",
+			"name": "Frontend"
+		},
+		{
+			"path": "./.github",
+			"name": "GitHub Config"
+		},
 	],
 	"settings": {}
 }

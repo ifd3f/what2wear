@@ -1,0 +1,13 @@
+cradle:
+  cabal:
+    - path: "src"
+      component: "lib:what2wear-server"
+
+    - path: "app/Main.hs"
+      component: "what2wear-server:exe:what2wear-server-exe"
+
+    - path: "app/Paths_what2wear_server.hs"
+      component: "what2wear-server:exe:what2wear-server-exe"
+
+    - path: "test"
+      component: "what2wear-server:test:what2wear-server-test"
