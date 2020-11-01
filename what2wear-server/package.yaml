@@ -24,6 +24,9 @@ dependencies:
 - servant-server
 - wai
 - warp
+- http-conduit
+- bytestring
+- utf8-string
 
 library:
   source-dirs: src

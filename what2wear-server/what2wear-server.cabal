@@ -4,7 +4,7 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a8dec417dba553f17e72f8151b605815782419280e3b8f8b2bb65639e3d5a0b7
+-- hash: 60bab68aae6cf6cb783503869264cef8fb57ca391c2647c524e2a959006cd45f
 
 name:           what2wear-server
 version:        0.1.0
@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      FetchWeatherAPI
       Lib
   other-modules:
       Paths_what2wear_server
@@ -33,7 +34,10 @@ library
   build-depends:
       aeson
     , base >=4.7 && <5
+    , bytestring
+    , http-conduit
     , servant-server
+    , utf8-string
     , wai
     , warp
   default-language: Haskell2010
@@ -48,7 +52,10 @@ executable what2wear-server-exe
   build-depends:
       aeson
     , base
+    , bytestring
+    , http-conduit
     , servant-server
+    , utf8-string
     , wai
     , warp
     , what2wear-server
@@ -65,10 +72,13 @@ test-suite what2wear-server-test
   build-depends:
       aeson
     , base
+    , bytestring
     , hspec
     , hspec-wai
     , hspec-wai-json
+    , http-conduit
     , servant-server
+    , utf8-string
     , wai
     , warp
     , what2wear-server

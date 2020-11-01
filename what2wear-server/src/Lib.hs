@@ -2,8 +2,8 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators   #-}
 module Lib
-    ( startApp
-    , app
+    ( startW2WApp
+    , w2wApp
     ) where
 
 import Data.Aeson
@@ -22,11 +22,11 @@ $(deriveJSON defaultOptions ''User)
 
 type API = "users" :> Get '[JSON] [User]
 
-startApp :: IO ()
-startApp = run 8080 app
+startW2WApp :: IO ()
+startW2WApp = run 8080 w2wApp
 
-app :: Application
-app = serve api server
+w2wApp :: Application
+w2wApp = serve api server
 
 api :: Proxy API
 api = Proxy
