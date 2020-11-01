@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { useState } from "react"
 import {
   GetHandleProps,
   GetRailProps,
@@ -10,6 +10,7 @@ import {
   Ticks,
   Tracks
 } from "react-compound-slider"
+import { RangePreferences } from "./preferences"
 
 // modified from https://react-compound-slider.netlify.app/vertical
 
@@ -176,82 +177,72 @@ const sliderStyle: React.CSSProperties = {
   touchAction: "none",
 }
 
-const domain = [100, 500]
-const defaultValues = [150, 300, 400, 450]
+export function ZoneAdjustmentSlider({preference, setPreference}: {preference: RangePreferences<string>, setPreference: (pref: RangePreferences<string>) => void}) {
+  const domain = [0, 100]
+  const [values, setValues] = useState<readonly number[]>([10, 20, 30])
 
-export class ZoneAdjustmentSlider extends Component {
-  state = {
-    values: defaultValues.slice(),
-    update: defaultValues.slice(),
+  const onUpdate = (d: readonly number[]) => {
   }
 
-  onUpdate = (update: ReadonlyArray<number>) => {
-    this.setState({ update })
+  const onChange = (d: readonly number[]) => {
+    setValues(d)
+
   }
 
-  onChange = (values: ReadonlyArray<number>) => {
-    this.setState({ values })
-  }
-
-  render() {
-    const {
-      state: { values, update },
-    } = this
-
-    return (
-      <div style={{ height: 520, width: "100%" }}>
-        <Slider
-          vertical
-          mode={2}
-          step={5}
-          domain={domain}
-          rootStyle={sliderStyle}
-          onUpdate={this.onUpdate}
-          onChange={this.onChange}
-          values={values}
-        >
-          <Rail>
-            {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
-          </Rail>
-          <Handles>
-            {({ handles, getHandleProps }) => (
-              <div className="slider-handles">
-                {handles.map(handle => (
-                  <Handle
-                    key={handle.id}
-                    handle={handle}
-                    domain={domain}
-                    getHandleProps={getHandleProps}
-                  />
-                ))}
-              </div>
-            )}
-          </Handles>
-          <Tracks left={false} right={false}>
-            {({ tracks, getTrackProps }) => (
-              <div className="slider-tracks">
-                {tracks.map(({ id, source, target }) => (
-                  <Track
-                    key={id}
-                    source={source}
-                    target={target}
-                    getTrackProps={getTrackProps}
-                  />
-                ))}
-              </div>
-            )}
-          </Tracks>
-          <Ticks count={5}>
-            {({ ticks }) => (
-              <div className="slider-ticks">
-                {ticks.map(tick => (
-                  <Tick key={tick.id} tick={tick} />
-                ))}
-              </div>
-            )}
-          </Ticks>
-        </Slider>
-      </div>
-    )
-  }
+  return (
+    <div style={{ height: 520, width: "100%" }}>
+      <Slider
+        vertical
+        reversed
+        mode={2}
+        step={1}
+        domain={domain}
+        rootStyle={sliderStyle}
+        onUpdate={onUpdate}
+        onChange={onChange}
+        values={values}
+      >
+        <Rail>
+          {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
+        </Rail>
+        <Handles>
+          {({ handles, getHandleProps }) => (
+            <div className="slider-handles">
+              {handles.map(handle => (
+                <Handle
+                  key={handle.id}
+                  handle={handle}
+                  domain={domain}
+                  getHandleProps={getHandleProps}
+                />
+              ))}
+            </div>
+          )}
+        </Handles>
+        <Tracks left={false} right={false}>
+          {({ tracks, getTrackProps }) => (
+            <div className="slider-tracks">
+              {tracks.map(({ id, source, target }) => (
+                <Track
+                  key={id}
+                  source={source}
+                  target={target}
+                  getTrackProps={getTrackProps}
+                />
+              ))}
+            </div>
+          )}
+        </Tracks>
+        <Ticks count={5}>
+          {({ ticks }) => (
+            <div className="slider-ticks">
+              {ticks.map(tick => (
+                <Tick key={tick.id} tick={tick} />
+              ))}
+            </div>
+          )}
+        </Ticks>
+      </Slider>
+    </div>
+  )
 }
