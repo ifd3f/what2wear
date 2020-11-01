@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 import "./App.scss"
 import { WeatherDataProvider } from "./weather/components"
 import { DummyWeatherDataSource } from "./weather/dummy"
-import { useStyles } from "./material-styles"
 import { WearGrid } from "./wear/wear-grid"
+import { Layout } from "./layout"
 
 function App() {
   const api = new DummyWeatherDataSource({
@@ -20,13 +20,11 @@ function App() {
     })
   }, [])
 
-  const classes = useStyles()
-
   return (
     <WeatherDataProvider api={api} position={position}>
-      <div className={classes.root}>
+      <Layout title="What to wear?">
         <WearGrid />
-      </div>
+      </Layout>
     </WeatherDataProvider>
   )
 }
