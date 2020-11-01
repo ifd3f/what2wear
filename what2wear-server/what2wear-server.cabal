@@ -4,7 +4,7 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 60bab68aae6cf6cb783503869264cef8fb57ca391c2647c524e2a959006cd45f
+-- hash: a1e7d8d4b7508e219966c6c8e8539a9146c8e137fdce97513762a6027b30988c
 
 name:           what2wear-server
 version:        0.1.0
@@ -65,6 +65,7 @@ test-suite what2wear-server-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Serving.APISpec
       Paths_what2wear_server
   hs-source-dirs:
       test
