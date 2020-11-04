@@ -1,10 +1,9 @@
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
 
-module FetchWeatherAPI 
-        ( APIContext(..)
-        , CurrentWeather
-        , CurrentWeatherResponse
+module WeatherAPICom
+        ( CurrentWeather(..)
+        , CurrentWeatherResponse(..)
         , fetchCurrentWeather
         ) where
 
@@ -12,6 +11,7 @@ import Data.Aeson
 import Data.ByteString.UTF8 as BU
 import Network.HTTP.Simple
 import GHC.Generics
+import ParamTypes (apiKey, WeatherAPIComContext)
 
 data CurrentWeatherResponse = CurrentWeatherResponse {
     current :: CurrentWeather
@@ -25,20 +25,17 @@ data CurrentWeather = CurrentWeather {
 instance ToJSON CurrentWeather
 instance FromJSON CurrentWeather
 
-data APIContext = APIContext { 
-    apiKey :: String
-}
 
-baseRequest :: APIContext -> Request
-baseRequest (APIContext key)
+baseRequest :: WeatherAPIComContext -> Request
+baseRequest ctx
     = setRequestHost "api.weatherapi.com"
     $ setRequestSecure True
     $ setRequestPort 443
-    $ setRequestQueryString [("key", Just (BU.fromString key))]
+    $ setRequestQueryString [("key", Just $ BU.fromString $ apiKey ctx)]
     $ defaultRequest
 
 
-fetchCurrentWeather :: APIContext -> String -> IO CurrentWeatherResponse
+fetchCurrentWeather :: WeatherAPIComContext -> String -> IO CurrentWeatherResponse
 fetchCurrentWeather ctx location = do
     let request 
             = setRequestPath "/v1/current.json" 

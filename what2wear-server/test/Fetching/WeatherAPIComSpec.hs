@@ -1,15 +1,16 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE OverloadedStrings #-}
-module Fetching.WeatherAPISpec (spec) where
+module Fetching.WeatherAPIComSpec (spec) where
 
-import Lib (w2wApp)
-import FetchWeatherAPI
+import Server (w2wApp)
+import WeatherAPICom
+import ParamTypes
 import Test.Hspec
 import Test.Hspec.Wai
 import Test.Hspec.Wai.JSON
 
-ctx :: APIContext
-ctx = APIContext { apiKey = "55df345ff41e49caaf6215911201810" }
+ctx :: WeatherAPIComContext
+ctx = WeatherAPIComContext { apiKey = "55df345ff41e49caaf6215911201810" }
 
 spec :: Spec
 spec = do
