@@ -11,7 +11,7 @@ import Data.Aeson
 import Data.ByteString.UTF8 as BU
 import Network.HTTP.Simple
 import GHC.Generics
-import ParamTypes (apiKey, WeatherAPIComContext)
+import What2Wear.ParamTypes (apiKey, WeatherAPIComContext)
 
 data CurrentWeatherResponse = CurrentWeatherResponse {
     current :: CurrentWeather

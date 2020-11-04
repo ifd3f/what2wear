@@ -2,9 +2,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Fetching.WeatherAPIComSpec (spec) where
 
-import Server (w2wApp)
+import What2Wear.Server (w2wApp)
 import WeatherAPICom
-import ParamTypes
+import What2Wear.ParamTypes
 import Test.Hspec
 import Test.Hspec.Wai
 import Test.Hspec.Wai.JSON

@@ -1,7 +1,7 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators   #-}
-module Server
+module What2Wear.Server
     ( startW2WApp
     , w2wApp
     ) where
@@ -9,8 +9,8 @@ module Server
 import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
-import Weather (weatherAPI, WeatherAPI)
-import ParamTypes
+import What2Wear.Weather (weatherAPI, WeatherAPI)
+import What2Wear.ParamTypes
 
 type API = "weather" :> WeatherAPI
 

@@ -1,14 +1,14 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators   #-}
-module Weather
+module What2Wear.Weather
     ( WeatherAPI
     , weatherAPI
     ) where
 
 import Servant
 import WeatherAPICom ( CurrentWeather, fetchCurrentWeather, CurrentWeatherResponse(current) )
-import ParamTypes ( WeatherAPIComContext(..), ServerParams(..) )
+import What2Wear.ParamTypes ( WeatherAPIComContext(..), ServerParams(..) )
 import Control.Monad.IO.Class (MonadIO(liftIO))
 
 type WeatherAPI = "current" :> Get '[JSON] CurrentWeather

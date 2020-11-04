@@ -1,7 +1,7 @@
 module Main where
 
-import Server
-import ParamTypes
+import What2Wear.Server
+import What2Wear.ParamTypes
 
 main :: IO ()
 main = startW2WApp $ ServerParams 

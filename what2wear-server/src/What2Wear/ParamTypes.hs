@@ -1,4 +1,4 @@
-module ParamTypes where
+module What2Wear.ParamTypes where
 
 data ServerParams = ServerParams
   { weatherAPIComKey :: String
