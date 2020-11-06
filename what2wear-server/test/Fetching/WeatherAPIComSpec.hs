@@ -3,7 +3,7 @@
 module Fetching.WeatherAPIComSpec (spec) where
 
 import What2Wear.Server (w2wApp)
-import WeatherAPICom
+import WeatherAPICom.Client
 import What2Wear.ParamTypes
 import Test.Hspec
 import Test.Hspec.Wai

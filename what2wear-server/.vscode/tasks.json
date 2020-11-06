@@ -17,7 +17,8 @@
         {
             "label": "Run",
             "type": "shell",
-            "command": "stack run"
+            "command": "stack run",
+            "problemMatcher": []
         }
     ]
 }
