@@ -1,9 +1,8 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module WeatherAPICom
-        ( CurrentWeather(..)
-        , CurrentWeatherResponse(..)
+module WeatherAPICom.Client
+        ( CurrentWeatherResponse(..)
         , fetchCurrentWeather
         ) where
 
@@ -12,19 +11,21 @@ import Data.ByteString.UTF8 as BU
 import Network.HTTP.Simple
 import GHC.Generics
 import What2Wear.ParamTypes (apiKey, WeatherAPIComContext)
+import qualified WeatherAPICom.CurrentWeather as CW
 
-data CurrentWeatherResponse = CurrentWeatherResponse {
-    current :: CurrentWeather
-} deriving (Generic, Show)
+data CurrentWeatherResponse = CurrentWeatherResponse 
+    { current :: CW.CurrentWeather
+    } deriving (Generic, Show)
 instance ToJSON CurrentWeatherResponse
 instance FromJSON CurrentWeatherResponse
 
-data CurrentWeather = CurrentWeather {
-    temp_c :: Float
-} deriving (Generic, Show)
-instance ToJSON CurrentWeather
-instance FromJSON CurrentWeather
-
+data Condition = Condition 
+    { text :: String 
+    , icon :: String 
+    , code :: Int 
+    } deriving (Generic, Show)
+instance ToJSON Condition
+instance FromJSON Condition
 
 baseRequest :: WeatherAPIComContext -> Request
 baseRequest ctx
@@ -33,7 +34,6 @@ baseRequest ctx
     $ setRequestPort 443
     $ setRequestQueryString [("key", Just $ BU.fromString $ apiKey ctx)]
     $ defaultRequest
-
 
 fetchCurrentWeather :: WeatherAPIComContext -> String -> IO CurrentWeatherResponse
 fetchCurrentWeather ctx location = do

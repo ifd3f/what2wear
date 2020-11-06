@@ -4,7 +4,7 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5641cd37f015d7497c3edae746c0424964beb8d3c073a554efa632af6452eaef
+-- hash: 168815175cb934f451acf7b204e0a0a6b8a8286785fe66fe0c5175757a7f330e
 
 name:           what2wear-server
 version:        0.1.0
@@ -25,7 +25,9 @@ source-repository head
 
 library
   exposed-modules:
-      WeatherAPICom
+      WeatherAPICom.Client
+      WeatherAPICom.CurrentWeather
+      WeatherAPICom.Forecast
       What2Wear.ParamTypes
       What2Wear.Server
       What2Wear.Weather

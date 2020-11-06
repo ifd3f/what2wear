@@ -7,11 +7,12 @@ module What2Wear.Weather
     ) where
 
 import Servant
-import WeatherAPICom ( CurrentWeather, fetchCurrentWeather, CurrentWeatherResponse(current) )
 import What2Wear.ParamTypes ( WeatherAPIComContext(..), ServerParams(..) )
 import Control.Monad.IO.Class (MonadIO(liftIO))
+import qualified WeatherAPICom.CurrentWeather as CW
+import WeatherAPICom.Client (current, fetchCurrentWeather)
 
-type WeatherAPI = "current" :> Get '[JSON] CurrentWeather
+type WeatherAPI = "current" :> Get '[JSON] CW.CurrentWeather
 
 weatherAPI :: ServerParams -> Server WeatherAPI
 weatherAPI params = do
