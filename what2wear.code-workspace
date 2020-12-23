@@ -1,17 +1,29 @@
 {
-	"folders": [
-		{
-			"path": "./what2wear-server",
-			"name": "API"
-		},
-		{
-			"path": "./what2wear-frontend",
-			"name": "Frontend"
-		},
-		{
-			"path": "./.github",
-			"name": "GitHub Config"
-		},
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "./what2wear-server",
+      "name": "API"
+    },
+    {
+      "path": "./what2wear-frontend",
+      "name": "Frontend"
+    },
+    {
+      "path": "./.github",
+      "name": "GitHub Config"
+    }
+  ],
+  "settings": {
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll": true
+    }
+  }
 }

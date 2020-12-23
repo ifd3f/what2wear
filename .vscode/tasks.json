@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run frontend",
+			"type": "npm",
+			"script": "start",
+			"path": "what2wear-frontend/",
+			"problemMatcher": [],
+			"detail": "npx react-scripts start"
+		},
+		{
+			"label": "Run backend",
+			"type": "shell",
+			"command": "cd what2wear-server && stack run",
+			"problemMatcher": []
+		},
+		{
+		  "label": "Build",
+		  "dependsOn": ["Client Build", "Server Build"]
+		}
+	]
+}
